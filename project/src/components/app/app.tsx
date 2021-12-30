@@ -6,17 +6,15 @@ import PropertyScreenNotLogged from '../property-screen-not-logged/property-scre
 import { AppRoute, AuthorizationStatus } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import NotFound404 from '../NotFound404/NotFound404';
+import { offers } from '../../mocks/offer';
 
-const Setting = {
-  PLACE_CARD_COUNT: 5,
-};
 
 function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route path={AppRoute.Main} exact>
-          <MainPage placeCardCount={Setting.PLACE_CARD_COUNT} />
+          <MainPage offers={offers} />
         </Route>
         <Route path={AppRoute.Login} exact component={LoginScreen} />
         <PrivateRoute
