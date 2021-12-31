@@ -1,5 +1,6 @@
 export type Offer = {
   bedrooms: number,
+  cityName: string,
   description: string,
   goods: string[],
   hostAvatarUrl: string,
@@ -21,6 +22,7 @@ export type Offer = {
 const offers: Offer[] = [
   {
     bedrooms: 3,
+    cityName: 'Cologne',
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
     hostAvatarUrl: 'img/avatar-max.jpg',
@@ -40,6 +42,7 @@ const offers: Offer[] = [
   },
   {
     bedrooms: 4,
+    cityName: 'Amsterdam',
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: ['Heating', 'Kitchen', 'Coffee machine', 'Dishwasher'],
     hostAvatarUrl: 'img/avatar-angelina.jpg',
@@ -51,7 +54,7 @@ const offers: Offer[] = [
     isFavorite: true,
     isPremium: false,
     maxAdults: 5,
-    previewImage: 'img/studio-01.jpg',
+    previewImage: 'img/apartment-02.jpg',
     price: 50,
     rating: 5,
     title: 'Wood and stone place',
@@ -59,6 +62,7 @@ const offers: Offer[] = [
   },
   {
     bedrooms: 2,
+    cityName: 'Amsterdam',
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: ['Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
     hostAvatarUrl: 'img/avatar-max.jpg',
@@ -78,6 +82,7 @@ const offers: Offer[] = [
   },
   {
     bedrooms: 1,
+    cityName: 'Amsterdam',
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: ['Heating', 'Kitchen', 'Cable TV', 'Washing machine' ],
     hostAvatarUrl: 'img/avatar-angelina.jpg',

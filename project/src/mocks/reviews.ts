@@ -30,7 +30,7 @@ const reviews: Review[] = [
     rating: 5,
     userAvatarUrl: 'img/avatar-max.jpg',
     userId: 2,
-    userIsPro: true,
+    userIsPro: false,
     userName: 'Max',
   },
   {
@@ -52,7 +52,7 @@ const reviews: Review[] = [
     rating: 1,
     userAvatarUrl: 'img/avatar-max.jpg',
     userId: 2,
-    userIsPro: true,
+    userIsPro: false,
     userName: 'Max',
   },
   {
@@ -74,7 +74,7 @@ const reviews: Review[] = [
     rating: 4,
     userAvatarUrl: 'img/avatar-max.jpg',
     userId: 2,
-    userIsPro: true,
+    userIsPro: false,
     userName: 'Max',
   },
   {
