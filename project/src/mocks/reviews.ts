@@ -1,5 +1,5 @@
 export type Review = {
-  offersID: number,
+  offersId: number,
   comment: string,
   date: string,
   id: number,
@@ -12,7 +12,7 @@ export type Review = {
 
 const reviews: Review[] = [
   {
-    offersID: 1111,
+    offersId: 1111,
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     date: '2019-05-08T14:13:56.569Z',
     id: 1,
@@ -23,7 +23,7 @@ const reviews: Review[] = [
     userName: 'Angelina',
   },
   {
-    offersID: 1111,
+    offersId: 1111,
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     date: '2019-05-08T14:13:56.569Z',
     id: 2,
@@ -34,7 +34,7 @@ const reviews: Review[] = [
     userName: 'Max',
   },
   {
-    offersID: 2222,
+    offersId: 2222,
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     date: '2019-05-08T14:13:56.569Z',
     id: 3,
@@ -45,7 +45,7 @@ const reviews: Review[] = [
     userName: 'Angelina',
   },
   {
-    offersID: 3333,
+    offersId: 3333,
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     date: '2019-05-08T14:13:56.569Z',
     id: 4,
@@ -56,7 +56,7 @@ const reviews: Review[] = [
     userName: 'Max',
   },
   {
-    offersID: 3333,
+    offersId: 3333,
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     date: '2019-05-08T14:13:56.569Z',
     id: 5,
@@ -67,7 +67,7 @@ const reviews: Review[] = [
     userName: 'Angelina',
   },
   {
-    offersID: 4444,
+    offersId: 4444,
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     date: '2019-05-08T14:13:56.569Z',
     id: 6,
@@ -78,7 +78,7 @@ const reviews: Review[] = [
     userName: 'Max',
   },
   {
-    offersID: 4444,
+    offersId: 4444,
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     date: '2019-05-08T14:13:56.569Z',
     id: 7,
