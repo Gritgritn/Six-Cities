@@ -7,7 +7,7 @@ import {
   offerTypeToReadable
 } from '../../const';
 import { Offer } from '../../mocks/offer';
-import { Review } from '../../mocks/review';
+import { Review } from '../../mocks/reviews';
 import { getRatingStarsWidth } from '../../utils';
 import OffersList from '../offers-list/offers-list';
 import ReviewsList from '../reviews-list/reviews-list';
@@ -51,7 +51,7 @@ function PropertyScreen({ offer, offers, reviews }: PropertyScreenProps): JSX.El
   const placesInNeighbourhood = offers.slice(MIN_OFFER_IN_NEIGHBOURHOOD, MAX_OFFER_IN_NEIGHBOURHOOD);
 
   return (
-    <div className="page">
+    <div className="page">s
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
