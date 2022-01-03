@@ -15,7 +15,7 @@ function FavoritePlaceCard({ offer }: FavoritePlaceCardProps): JSX.Element {
     isPremium,
     rating,
     title,
-    id,
+    // id,
     type,
   } = offer;
 

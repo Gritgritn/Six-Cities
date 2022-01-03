@@ -1,19 +1,12 @@
 import PlaceCard from '../place-card/place-card';
 import { Offer } from '../../mocks/offer';
-import { useState } from 'react';
-
 
 type OffersListProps = {
-  offers: Offer[];
+  offers: Offer[],
+  handleActiveOfferSelect: (offer: Offer | null) => void,
 }
 
-function OffersList({ offers }: OffersListProps): JSX.Element {
-  const [, setActivePlaceCard] = useState<Offer | null>(null);
-
-  const handleActiveOfferSelect = (offer: Offer | null): void => {
-    setActivePlaceCard(offer);
-  };
-
+function OffersList({ offers, handleActiveOfferSelect }: OffersListProps): JSX.Element {
   return (
     <>
       {offers.map((offer) => (

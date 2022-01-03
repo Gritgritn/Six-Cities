@@ -11,6 +11,7 @@ import { Review } from '../../mocks/reviews';
 import { getRatingStarsWidth } from '../../utils';
 import OffersList from '../offers-list/offers-list';
 import ReviewsList from '../reviews-list/reviews-list';
+import Map from '../map/map';
 import SubmitCommentForm from '../submit-comment-form/submit-comment-form';
 
 type PropertyScreenProps = {
@@ -22,6 +23,12 @@ type PropertyScreenProps = {
 function PropertyScreen({ offer, offers, reviews }: PropertyScreenProps): JSX.Element {
   const [, setCommentStarValue] = useState<string | null>('');
   const [, setCommentTextValue] = useState<string | null>('');
+
+  const [activePlaceCard, setActivePlaceCard] = useState<Offer | null>(null);
+
+  const handleActiveOfferSelect = (PlaceCard: Offer | null): void => {
+    setActivePlaceCard(PlaceCard);
+  };
 
   const handleRatingStarSelect = (value: string): void => {
     setCommentStarValue(value);
@@ -112,7 +119,7 @@ function PropertyScreen({ offer, offers, reviews }: PropertyScreenProps): JSX.El
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {offerTypeToReadable[type]}
+                  {offerTypeToReadable}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
                   {bedrooms} Bedrooms
@@ -168,13 +175,15 @@ function PropertyScreen({ offer, offers, reviews }: PropertyScreenProps): JSX.El
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <section className="property__map map">
+            <Map offers={offers} activePlaceCard={activePlaceCard} />
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList offers={placesInNeighbourhood} />
+              <OffersList offers={placesInNeighbourhood} handleActiveOfferSelect={handleActiveOfferSelect} />
             </div>
           </section>
         </div>
