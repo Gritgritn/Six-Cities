@@ -12,16 +12,14 @@ import OffersList from '../offers-list/offers-list';
 import ReviewsList from '../reviews-list/reviews-list';
 import Map from '../map/map';
 import SubmitCommentForm from '../submit-comment-form/submit-comment-form';
-import { City } from '../../types/city';
 
 type PropertyScreenProps = {
   offer: Offer,
   offers: Offer[],
-  reviews: Review[],
-  city: City,
+  reviews: Review[]
 }
 
-function PropertyScreen({ offer, offers, reviews, city }: PropertyScreenProps): JSX.Element {
+function PropertyScreen({ offer, offers, reviews }: PropertyScreenProps): JSX.Element {
   const [, setCommentStarValue] = useState<string | null>('');
   const [, setCommentTextValue] = useState<string | null>('');
 
@@ -172,7 +170,7 @@ function PropertyScreen({ offer, offers, reviews, city }: PropertyScreenProps): 
             </div>
           </div>
           <section className="property__map map">
-            <Map offers={placesInNeighbourhood} city={city} activePlaceCard={null} />
+            <Map offers={placesInNeighbourhood} activePlaceCard={null} />
           </section>
         </section>
         <div className="container">

@@ -28,3 +28,12 @@ export const offerTypeToReadable = {
 export const MIN_OFFER_IN_NEIGHBOURHOOD = 0;
 
 export const MAX_OFFER_IN_NEIGHBOURHOOD = 3;
+
+export const enum Citys {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf',
+}

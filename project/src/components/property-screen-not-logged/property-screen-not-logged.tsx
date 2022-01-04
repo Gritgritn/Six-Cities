@@ -10,18 +10,15 @@ import {
 } from '../../const';
 import { Link } from 'react-router-dom';
 import { getRatingStarsWidth } from '../../utils';
-import { useState } from 'react';
 import Map from '../map/map';
-import { City } from '../../types/city';
 
 type PropertyScreenNotLoggedProps = {
   offer: Offer,
   offers: Offer[],
-  reviews: Review[],
-  city: City,
+  reviews: Review[]
 }
 
-function PropertyScreenNotLogged({ offer, offers, reviews, city }: PropertyScreenNotLoggedProps): JSX.Element {
+function PropertyScreenNotLogged({ offer, offers, reviews }: PropertyScreenNotLoggedProps): JSX.Element {
   const {
     images,
     isPremium,
@@ -157,7 +154,7 @@ function PropertyScreenNotLogged({ offer, offers, reviews, city }: PropertyScree
             </div>
           </div>
           <section className="property__map map">
-            <Map offers={placesInNeighbourhood} city={city} activePlaceCard={null} />
+            <Map offers={placesInNeighbourhood} activePlaceCard={null} />
           </section>
         </section>
         <div className="container">

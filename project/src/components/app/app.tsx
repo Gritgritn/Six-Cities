@@ -8,7 +8,6 @@ import PrivateRoute from '../private-route/private-route';
 import NotFound404 from '../NotFound404/NotFound404';
 import { offers } from '../../mocks/offer';
 import { reviews } from '../../mocks/reviews';
-import { city } from '../../mocks/city';
 
 
 function App(): JSX.Element {
@@ -16,7 +15,7 @@ function App(): JSX.Element {
     <BrowserRouter>
       <Switch>
         <Route path={AppRoute.Main} exact>
-          <MainPage offers={offers} city={city}/>
+          <MainPage offers={offers} />
         </Route>
         <Route path={AppRoute.Login} exact component={LoginScreen} />
         <PrivateRoute
@@ -27,7 +26,7 @@ function App(): JSX.Element {
         >
         </PrivateRoute>
         <Route path={AppRoute.Offer} exact>
-          <PropertyScreen offer={offers[3]} offers={offers} reviews={reviews} city={city}/>
+          <PropertyScreen offer={offers[3]} offers={offers} reviews={reviews}/>
         </Route>
         <Route
           render={(props) => (
