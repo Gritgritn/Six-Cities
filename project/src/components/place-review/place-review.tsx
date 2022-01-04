@@ -1,5 +1,6 @@
 import { Review } from '../../mocks/reviews';
 import { getRatingStarsWidth } from '../../utils';
+import dayjs from 'dayjs';
 
 type PlaceReviewProps = {
   review: Review;
@@ -36,7 +37,7 @@ function PlaceReview({ review }: PlaceReviewProps): JSX.Element {
         <p className="reviews__text">
           {comment}
         </p>
-        <time className="reviews__time" dateTime={date}>{date}</time>
+        <time className="reviews__time" dateTime={date}>{dayjs(date).format('MMMM YYYY')}</time>
       </div>
     </li>
   );

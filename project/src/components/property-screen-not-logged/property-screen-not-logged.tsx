@@ -40,12 +40,7 @@ function PropertyScreenNotLogged({ offer, offers, reviews, city }: PropertyScree
   } = offer;
 
   const placesInNeighbourhood = offers.slice(MIN_OFFER_IN_NEIGHBOURHOOD, MAX_OFFER_IN_NEIGHBOURHOOD);
-
-  const [activePlaceCard, setActivePlaceCard] = useState<Offer | null>(null);
-
-  const handleActiveOfferSelect = (PlaceCard: Offer | null): void => {
-    setActivePlaceCard(PlaceCard);
-  };
+  const reviewsOnPlace = reviews.filter((review) => offer.id === review.offersId);
 
   return (
     <div className="page">
@@ -154,22 +149,22 @@ function PropertyScreenNotLogged({ offer, offers, reviews, city }: PropertyScree
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <h2 className="reviews__title">Reviews · <span className="reviews__amount">1</span></h2>
+                <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviewsOnPlace.length}</span></h2>
                 <ul className="reviews__list">
-                  <ReviewsList reviews={reviews} offer={offer} />
+                  <ReviewsList reviews={reviewsOnPlace} />
                 </ul>
               </section>
             </div>
           </div>
           <section className="property__map map">
-            <Map offers={placesInNeighbourhood} city={city} activePlaceCard={activePlaceCard} />
+            <Map offers={placesInNeighbourhood} city={city} activePlaceCard={null} />
           </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList offers={placesInNeighbourhood} handleActiveOfferSelect={handleActiveOfferSelect} />
+              <OffersList offers={placesInNeighbourhood} />
             </div>
           </section>
         </div>
