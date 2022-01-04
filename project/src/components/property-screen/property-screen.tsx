@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   AppRoute,
   MAX_OFFER_IN_NEIGHBOURHOOD,
-  MIN_OFFER_IN_NEIGHBOURHOOD,
-  offerTypeToReadable
+  MIN_OFFER_IN_NEIGHBOURHOOD
 } from '../../const';
 import { Offer } from '../../mocks/offer';
 import { Review } from '../../mocks/reviews';
@@ -13,14 +12,16 @@ import OffersList from '../offers-list/offers-list';
 import ReviewsList from '../reviews-list/reviews-list';
 import Map from '../map/map';
 import SubmitCommentForm from '../submit-comment-form/submit-comment-form';
+import { City } from '../../types/city';
 
 type PropertyScreenProps = {
   offer: Offer,
   offers: Offer[],
   reviews: Review[],
+  city: City,
 }
 
-function PropertyScreen({ offer, offers, reviews }: PropertyScreenProps): JSX.Element {
+function PropertyScreen({ offer, offers, reviews, city }: PropertyScreenProps): JSX.Element {
   const [, setCommentStarValue] = useState<string | null>('');
   const [, setCommentTextValue] = useState<string | null>('');
 
@@ -47,11 +48,11 @@ function PropertyScreen({ offer, offers, reviews }: PropertyScreenProps): JSX.El
     isFavorite,
     rating,
     title,
-    type,
     goods,
     hostName,
     hostIsPro,
     description,
+    // type,
     // id,
   } = offer;
 
@@ -119,7 +120,7 @@ function PropertyScreen({ offer, offers, reviews }: PropertyScreenProps): JSX.El
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {offerTypeToReadable}
+                  {/* {offerTypeToReadable} */}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
                   {bedrooms} Bedrooms
@@ -176,7 +177,7 @@ function PropertyScreen({ offer, offers, reviews }: PropertyScreenProps): JSX.El
             </div>
           </div>
           <section className="property__map map">
-            <Map offers={offers} activePlaceCard={activePlaceCard} />
+            <Map offers={placesInNeighbourhood} city={city} activePlaceCard={activePlaceCard} />
           </section>
         </section>
         <div className="container">
