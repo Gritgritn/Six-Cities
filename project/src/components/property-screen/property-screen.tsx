@@ -3,20 +3,21 @@ import { Link } from 'react-router-dom';
 import {
   AppRoute,
   MAX_OFFER_IN_NEIGHBOURHOOD,
-  MIN_OFFER_IN_NEIGHBOURHOOD
+  MIN_OFFER_IN_NEIGHBOURHOOD,
+  offerTypeToReadable
 } from '../../const';
-import { Offer } from '../../mocks/offer';
-import { Review } from '../../mocks/reviews';
+import { Offer } from '../../types/offer';
+import { Review } from '../../types/review';
 import { getRatingStarsWidth } from '../../utils';
+import Map from '../map/map';
 import OffersList from '../offers-list/offers-list';
 import ReviewsList from '../reviews-list/reviews-list';
-import Map from '../map/map';
 import SubmitCommentForm from '../submit-comment-form/submit-comment-form';
 
 type PropertyScreenProps = {
   offer: Offer,
   offers: Offer[],
-  reviews: Review[]
+  reviews: Review[],
 }
 
 function PropertyScreen({ offer, offers, reviews }: PropertyScreenProps): JSX.Element {
@@ -40,11 +41,11 @@ function PropertyScreen({ offer, offers, reviews }: PropertyScreenProps): JSX.El
     isFavorite,
     rating,
     title,
+    type,
     goods,
     hostName,
     hostIsPro,
     description,
-    // type,
     // id,
   } = offer;
 
@@ -52,7 +53,7 @@ function PropertyScreen({ offer, offers, reviews }: PropertyScreenProps): JSX.El
   const reviewsOnPlace = reviews.filter((review) => offer.id === review.offersId);
 
   return (
-    <div className="page">s
+    <div className="page">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -113,7 +114,7 @@ function PropertyScreen({ offer, offers, reviews }: PropertyScreenProps): JSX.El
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {/* {offerTypeToReadable} */}
+                  {offerTypeToReadable[type]}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
                   {bedrooms} Bedrooms

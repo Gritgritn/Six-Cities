@@ -1,6 +1,6 @@
-import { Offer } from '../../mocks/offer';
+import { Offer } from '../../types/offer';
 import OffersList from '../offers-list/offers-list';
-import { Review } from '../../mocks/reviews';
+import { Review } from '../../types/review';
 import ReviewsList from '../reviews-list/reviews-list';
 import {
   AppRoute,
@@ -15,7 +15,7 @@ import Map from '../map/map';
 type PropertyScreenNotLoggedProps = {
   offer: Offer,
   offers: Offer[],
-  reviews: Review[]
+  reviews: Review[],
 }
 
 function PropertyScreenNotLogged({ offer, offers, reviews }: PropertyScreenNotLoggedProps): JSX.Element {
@@ -101,7 +101,7 @@ function PropertyScreenNotLogged({ offer, offers, reviews }: PropertyScreenNotLo
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {offerTypeToReadable}
+                  {offerTypeToReadable[type]}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
                   {bedrooms} Bedrooms

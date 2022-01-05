@@ -1,4 +1,4 @@
-import { Offer } from '../../mocks/offer';
+import { Offer } from '../../types/offer';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { getRatingStarsWidth } from '../../utils';
@@ -19,12 +19,12 @@ function PlaceCard({ offer, onPlaceCardSelect }: PlaceCardProps): JSX.Element {
     type,
   } = offer;
 
-  const handleCardSelect  = () => {
+  const handleCardSelect = () => {
     if (onPlaceCardSelect) {
       onPlaceCardSelect(offer);
     }
   };
-  const handleCardUnselect   = () => {
+  const handleCardUnselect  = () => {
     if (onPlaceCardSelect) {
       onPlaceCardSelect(null);
     }
@@ -32,8 +32,6 @@ function PlaceCard({ offer, onPlaceCardSelect }: PlaceCardProps): JSX.Element {
 
   return (
     <article className="cities__place-card place-card"
-      onFocus={handleCardSelect}
-      onBlur={handleCardUnselect}
       onMouseEnter={handleCardSelect}
       onMouseLeave={handleCardUnselect}
     >

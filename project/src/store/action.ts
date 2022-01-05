@@ -1,9 +1,38 @@
-import {ActionType, ChangeCityAction, GetOffersAction} from '../types/action';
+import { AuthorizationStatus } from '../const';
+import { ActionType } from '../types/action';
+import { Offer } from '../types/offer';
 
-export const ChangeCity = (): ChangeCityAction => ({
+const changeCity = (city: string) => ({
   type: ActionType.ChangeCity,
-});
+  payload: city,
+}) as const;
 
-export const GetOffers = (): GetOffersAction => ({
-  type: ActionType.GetOffers,
-});
+const getOffersByCity = (offers: Offer[]) => ({
+  type: ActionType.GetOffersByCity,
+  payload: offers,
+}) as const;
+
+const changeSortType = (type: string) => ({
+  type: ActionType.ChangeSortType,
+  payload: type,
+}) as const;
+
+const loadOffers = (offers: Offer[]) => ({
+  type: ActionType.LoadOffers,
+  payload: {
+    offers,
+  },
+}) as const;
+
+const requireAuthorization = (authStatus: AuthorizationStatus) => ({
+  type: ActionType.RequireAuthorization,
+  payload: authStatus,
+} as const);
+
+export {
+  changeCity,
+  getOffersByCity,
+  changeSortType,
+  loadOffers,
+  requireAuthorization
+};

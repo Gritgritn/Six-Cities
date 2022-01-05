@@ -1,5 +1,5 @@
 import PlaceCard from '../place-card/place-card';
-import { Offer } from '../../mocks/offer';
+import { Offer } from '../../types/offer';
 
 type OffersListProps = {
   offers: Offer[],
@@ -7,6 +7,8 @@ type OffersListProps = {
 }
 
 function OffersList({ offers, handleActiveOfferSelect }: OffersListProps): JSX.Element {
+
+
   return (
     <>
       {offers.map((offer) => (

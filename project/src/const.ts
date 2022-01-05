@@ -1,35 +1,46 @@
-export const enum AppRoute {
+const MIN_OFFER_IN_NEIGHBOURHOOD = 0;
+const MAX_OFFER_IN_NEIGHBOURHOOD = 3;
+
+const enum MarkerIconUrl {
+  MarkerDefault = 'img/pin.svg',
+  MarkerCurrent = 'img/pin-active.svg',
+}
+
+const enum AppRoute {
   Main = '/',
   Login = '/login',
   Favorites = '/favorites',
-  Offer = '/offer/1',
+  Offer = '/offer/:id',
 }
 
-export const enum AuthorizationStatus {
+const enum APIRoute {
+  Hotels = '/hotels',
+  Login = '/login',
+  Logout = '/logout',
+}
+
+
+const enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
 
-export const enum OfferType {
+const enum OfferType {
   Apartment = 'apartment',
   Room = 'room',
   House = 'house',
   Hotel = 'hotel',
 }
 
-export const offerTypeToReadable = {
-  [OfferType.Apartment]: 'Apartment',
-  [OfferType.Room]: 'Private Room',
-  [OfferType.House]: 'House',
-  [OfferType.Hotel]: 'Hotel',
-};
+enum SortType {
+ Popular = 'Popular',
+ LowToHighPrice = 'Price: low to high',
+ HighToLowPrice = 'Price: high to low',
+ TopRated = 'Top rated first',
+}
 
-export const MIN_OFFER_IN_NEIGHBOURHOOD = 0;
-
-export const MAX_OFFER_IN_NEIGHBOURHOOD = 3;
-
-export const enum Citys {
+enum City {
   Paris = 'Paris',
   Cologne = 'Cologne',
   Brussels = 'Brussels',
@@ -37,3 +48,23 @@ export const enum Citys {
   Hamburg = 'Hamburg',
   Dusseldorf = 'Dusseldorf',
 }
+
+const offerTypeToReadable = {
+  [OfferType.Apartment]: 'Apartment',
+  [OfferType.Room]: 'Private Room',
+  [OfferType.House]: 'House',
+  [OfferType.Hotel]: 'Hotel',
+};
+
+export {
+  OfferType,
+  AppRoute,
+  AuthorizationStatus,
+  MIN_OFFER_IN_NEIGHBOURHOOD,
+  MAX_OFFER_IN_NEIGHBOURHOOD,
+  offerTypeToReadable,
+  City,
+  MarkerIconUrl,
+  SortType,
+  APIRoute
+};

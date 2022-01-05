@@ -1,36 +1,53 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { AppRoute } from '../../const';
+import PrivateRoute from '../private-route/private-route';
 import MainPage from '../main-page/main-page';
 import LoginScreen from '../login-screen/login-screen';
 import FavoritesScreen from '../favorites-screen/favorites-screen';
-import PropertyScreen from '../property-screen/property-screen';
-import { AppRoute, AuthorizationStatus } from '../../const';
-import PrivateRoute from '../private-route/private-route';
-import NotFound404 from '../NotFound404/NotFound404';
-import { offers } from '../../mocks/offer';
-import { reviews } from '../../mocks/reviews';
+import MainPage404 from '../NotFound404/NotFound404';
+import { connect, ConnectedProps } from 'react-redux';
+import { State } from '../../types/state';
+import LoadingScreen from '../loading-screen/loading-screen';
+import { isCheckedAuth } from '../../utils';
 
+const mapStateToProps = ({ authorizationStatus, isDataLoaded, offers }: State) => ({
+  authorizationStatus,
+  isDataLoaded,
+  offers,
+});
 
-function App(): JSX.Element {
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function App({ authorizationStatus, isDataLoaded, offers }: PropsFromRedux): JSX.Element {
+  if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <BrowserRouter>
       <Switch>
         <Route path={AppRoute.Main} exact>
-          <MainPage offers={offers} />
+          <MainPage />
         </Route>
-        <Route path={AppRoute.Login} exact component={LoginScreen} />
+        <Route path={AppRoute.Login} exact>
+          <LoginScreen />
+        </Route>
         <PrivateRoute
           exact
           path={AppRoute.Favorites}
           render={() => <FavoritesScreen offers={offers} />}
-          authorizationStatus={AuthorizationStatus.Auth}
+          authorizationStatus={authorizationStatus}
         >
         </PrivateRoute>
         <Route path={AppRoute.Offer} exact>
-          <PropertyScreen offer={offers[3]} offers={offers} reviews={reviews}/>
         </Route>
         <Route
           render={(props) => (
-            <NotFound404 />
+            <MainPage404 />
           )}
         />
       </Switch>
@@ -38,4 +55,5 @@ function App(): JSX.Element {
   );
 }
 
-export default App;
+export { App };
+export default connector(App);
