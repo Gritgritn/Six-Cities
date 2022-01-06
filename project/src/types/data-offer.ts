@@ -1,7 +1,6 @@
-/* eslint-disable camelcase */
 import { OfferType } from '../const';
 
-type dataOffer = {
+type DataOffer = {
   bedrooms: number;
   city: {
     name: string;
@@ -36,4 +35,4 @@ type dataOffer = {
   type: OfferType;
 }
 
-export type { dataOffer };
+export type { DataOffer };
