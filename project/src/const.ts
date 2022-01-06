@@ -1,5 +1,9 @@
-const MIN_OFFER_IN_NEIGHBOURHOOD = 0;
-const MAX_OFFER_IN_NEIGHBOURHOOD = 3;
+const MIN_COUNT_OFFER_IMAGES = 0;
+const MAX_COUNT_OFFER_IMAGES = 6;
+const MIN_COMMENT_CHARACTERS = 50;
+const MAX_COMMENT_CHARACTERS = 300;
+const MIN_COUNT_COMMENTS = 0;
+const MAX_COUNT_COMMENTS = 10;
 
 const enum MarkerIconUrl {
   MarkerDefault = 'img/pin.svg',
@@ -17,6 +21,8 @@ const enum APIRoute {
   Hotels = '/hotels',
   Login = '/login',
   Logout = '/logout',
+  Comments = '/comments',
+  Favorite = '/favorite',
 }
 
 
@@ -34,10 +40,10 @@ const enum OfferType {
 }
 
 enum SortType {
- Popular = 'Popular',
- LowToHighPrice = 'Price: low to high',
- HighToLowPrice = 'Price: high to low',
- TopRated = 'Top rated first',
+  Popular = 'Popular',
+  LowToHighPrice = 'Price: low to high',
+  HighToLowPrice = 'Price: high to low',
+  TopRated = 'Top rated first',
 }
 
 enum City {
@@ -57,11 +63,15 @@ const offerTypeToReadable = {
 };
 
 export {
+  MIN_COUNT_OFFER_IMAGES,
+  MAX_COUNT_OFFER_IMAGES,
+  MIN_COMMENT_CHARACTERS,
+  MAX_COMMENT_CHARACTERS,
+  MIN_COUNT_COMMENTS,
+  MAX_COUNT_COMMENTS,
   OfferType,
   AppRoute,
   AuthorizationStatus,
-  MIN_OFFER_IN_NEIGHBOURHOOD,
-  MAX_OFFER_IN_NEIGHBOURHOOD,
   offerTypeToReadable,
   City,
   MarkerIconUrl,

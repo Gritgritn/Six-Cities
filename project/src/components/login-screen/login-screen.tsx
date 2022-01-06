@@ -1,34 +1,54 @@
-import { connect, ConnectedProps } from 'react-redux';
+import { FormEvent, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Dispatch } from 'redux';
 import { AppRoute, City } from '../../const';
-import { changeCity, getOffersByCity } from '../../store/action';
-import { Actions } from '../../types/action';
-import { Offer } from '../../types/offer';
-import { State } from '../../types/state';
-import { getRandomNumberInRange } from '../../utils';
+import { changeCity, getCurrentLogin } from '../../store/action';
+import { loginAction } from '../../store/api-actions';
+import { getRandomNumberInRange } from '../../utils/uttils';
+import { toast } from 'react-toastify';
 
-const mapStateToProps = ({ offers }: State) => ({
-  offers,
-});
+const VALIDATION_FAIL_MESSAGE = 'Please enter your email address and password. The password must be at least 1 letter(a-z) and 1 number(0-9).';
 
-const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
-  onChangeCurrentCity(city: string, offers: Offer[]) {
-    dispatch(changeCity(city));
-    dispatch(getOffersByCity(offers));
-  },
-});
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-function LoginScreen({ offers, onChangeCurrentCity }: PropsFromRedux): JSX.Element {
-  const getRandomCity = () => Object.keys(City)[getRandomNumberInRange(0, Object.keys(City).length)];
+function LoginScreen(): JSX.Element {
+  const dispatch = useDispatch();
+  const getRandomCity = () => Object.keys(City)[getRandomNumberInRange(0, Object.keys(City).length - 1)];
   const randomCity = getRandomCity();
 
   const handleCityClick = () => {
-    onChangeCurrentCity(randomCity, offers);
+    dispatch(changeCity(randomCity));
+  };
+
+  const loginRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+
+  const validateForm = () => {
+    const emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    const passwordPattern = /[0-9]+[a-z]+|[a-z]+[0-9]+/;
+
+    if (loginRef.current !== null && passwordRef.current !== null) {
+      const isValidEmail = emailPattern.test(String(loginRef.current.value).toLowerCase());
+      const isValidPassword = passwordPattern.test(String(passwordRef.current.value).toLowerCase());
+
+      return isValidEmail && isValidPassword;
+    }
+
+    return false;
+  };
+
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    const isValidForm = validateForm();
+    if (isValidForm && loginRef.current !== null && passwordRef.current !== null) {
+      dispatch(getCurrentLogin(loginRef.current.value));
+      dispatch(loginAction({
+        login: loginRef.current.value,
+        password: passwordRef.current.value,
+      }));
+      return;
+    }
+
+    toast.info(VALIDATION_FAIL_MESSAGE);
   };
 
   return (
@@ -49,16 +69,39 @@ function LoginScreen({ offers, onChangeCurrentCity }: PropsFromRedux): JSX.Eleme
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-            <form className="login__form form" action="#" method="post">
+            <form
+              className="login__form form"
+              action="#" method="post"
+              onSubmit={handleSubmit}
+            >
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
-                <input className="login__input form__input" type="email" name="email" placeholder="Email" required />
+                <input
+                  ref={loginRef}
+                  className="login__input form__input"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  required
+                />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
-                <input className="login__input form__input" type="password" name="password" placeholder="Password" required />
+                <input
+                  ref={passwordRef}
+                  className="login__input form__input"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  required
+                />
               </div>
-              <button className="login__submit form__submit button" type="submit">Sign in</button>
+              <button
+                className="login__submit form__submit button"
+                type="submit"
+              >
+                Sign in
+              </button>
             </form>
           </section>
           <section className="locations locations--login locations--current">
@@ -74,4 +117,4 @@ function LoginScreen({ offers, onChangeCurrentCity }: PropsFromRedux): JSX.Eleme
   );
 }
 
-export default connector(LoginScreen);
+export default LoginScreen;

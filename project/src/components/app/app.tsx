@@ -1,26 +1,22 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route} from 'react-router-dom';
 import { AppRoute } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import MainPage from '../main-page/main-page';
 import LoginScreen from '../login-screen/login-screen';
 import FavoritesScreen from '../favorites-screen/favorites-screen';
 import MainPage404 from '../NotFound404/NotFound404';
-import { connect, ConnectedProps } from 'react-redux';
-import { State } from '../../types/state';
+import { useSelector } from 'react-redux';
 import LoadingScreen from '../loading-screen/loading-screen';
-import { isCheckedAuth } from '../../utils';
+import { isCheckedAuth } from '../../utils/uttils';
+import PropertyScreen from '../property-screen/property-screen';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getLoadedDataStatus } from '../../store/offer-data/selectors';
 
-const mapStateToProps = ({ authorizationStatus, isDataLoaded, offers }: State) => ({
-  authorizationStatus,
-  isDataLoaded,
-  offers,
-});
+function App(): JSX.Element {
 
-const connector = connect(mapStateToProps);
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const isDataLoaded = useSelector(getLoadedDataStatus);
 
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-function App({ authorizationStatus, isDataLoaded, offers }: PropsFromRedux): JSX.Element {
   if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
     return (
       <LoadingScreen />
@@ -28,32 +24,29 @@ function App({ authorizationStatus, isDataLoaded, offers }: PropsFromRedux): JSX
   }
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path={AppRoute.Main} exact>
-          <MainPage />
-        </Route>
-        <Route path={AppRoute.Login} exact>
-          <LoginScreen />
-        </Route>
-        <PrivateRoute
-          exact
-          path={AppRoute.Favorites}
-          render={() => <FavoritesScreen />}
-          authorizationStatus={authorizationStatus}
-        >
-        </PrivateRoute>
-        <Route path={AppRoute.Offer} exact>
-        </Route>
-        <Route
-          render={(props) => (
-            <MainPage404 />
-          )}
-        />
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route path={AppRoute.Main} exact>
+        <MainPage />
+      </Route>
+      <Route path={AppRoute.Login} exact>
+        <LoginScreen />
+      </Route>
+      <PrivateRoute
+        exact
+        path={AppRoute.Favorites}
+        render={() => <FavoritesScreen />}
+      >
+      </PrivateRoute>
+      <Route path={AppRoute.Offer} exact>
+        <PropertyScreen />
+      </Route>
+      <Route
+        render={() => (
+          <MainPage404 />
+        )}
+      />
+    </Switch>
   );
 }
 
-export { App };
-export default connector(App);
+export default App;

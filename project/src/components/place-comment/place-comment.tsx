@@ -1,12 +1,12 @@
-import { Review } from '../../mocks/reviews';
-import { getRatingStarsWidth } from '../../utils';
 import dayjs from 'dayjs';
+import { Review } from '../../types/review';
+import { getRatingStarsWidth } from '../../utils/uttils';
 
-type PlaceReviewProps = {
+type PlaceCommentProps = {
   review: Review;
 }
 
-function PlaceReview({ review }: PlaceReviewProps): JSX.Element {
+function PlaceComment({ review }: PlaceCommentProps): JSX.Element {
   const {
     comment,
     date,
@@ -37,10 +37,10 @@ function PlaceReview({ review }: PlaceReviewProps): JSX.Element {
         <p className="reviews__text">
           {comment}
         </p>
-        <time className="reviews__time" dateTime={date}>{dayjs(date).format('MMMM YYYY')}</time>
+        <time className="reviews__time" dateTime={`${date}`}>{dayjs(date).format('MMMM YYYY')}</time>
       </div>
     </li>
   );
 }
 
-export default PlaceReview;
+export default PlaceComment;

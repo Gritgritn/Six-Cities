@@ -1,13 +1,17 @@
-import { Offer } from '../../mocks/offer';
+import { Offer } from '../../types/offer';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { getRatingStarsWidth } from '../../utils';
+import { getRatingStarsWidth } from '../../utils/uttils';
+import { useDispatch } from 'react-redux';
+import { changeFavoriteStatus } from '../../store/api-actions';
 
 type FavoritePlaceCardProps = {
   offer: Offer,
 }
 
 function FavoritePlaceCard({ offer }: FavoritePlaceCardProps): JSX.Element {
+  const dispatch = useDispatch();
+
   const {
     previewImage,
     price,
@@ -15,9 +19,13 @@ function FavoritePlaceCard({ offer }: FavoritePlaceCardProps): JSX.Element {
     isPremium,
     rating,
     title,
-    // id,
     type,
+    id,
   } = offer;
+
+  const handleFavoriteClick = () => {
+    dispatch(changeFavoriteStatus(id, !isFavorite));
+  };
 
   return (
     <article className="favorites__card place-card">
@@ -26,7 +34,7 @@ function FavoritePlaceCard({ offer }: FavoritePlaceCardProps): JSX.Element {
           <span>Premium</span>
         </div>}
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <Link to={AppRoute.Offer}>
+        <Link to={`${AppRoute.Main}offer/${id}`}>
           <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place card" />
         </Link>
       </div>
@@ -36,7 +44,14 @@ function FavoritePlaceCard({ offer }: FavoritePlaceCardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={isFavorite ? 'place-card__bookmark-button place-card__bookmark-button--active button' : 'place-card__bookmark-button  button'} type="button">
+          <button className={
+            isFavorite
+              ? 'place-card__bookmark-button place-card__bookmark-button--active button'
+              : 'place-card__bookmark-button  button'
+          }
+          type="button"
+          onClick={handleFavoriteClick}
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -50,7 +65,7 @@ function FavoritePlaceCard({ offer }: FavoritePlaceCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={AppRoute.Offer}>{title}</Link>
+          <Link to={`${AppRoute.Main}offer/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
 import { Map, TileLayer } from 'leaflet';
-import { Offer  } from '../mocks/offer';
+import { Offer } from '../types/offer';
 
 function useMap(
   mapRef: React.MutableRefObject<HTMLElement | null>,
-  offer: Offer | undefined,
+  offer: Offer | null,
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
 
   useEffect(() => {
-    if (mapRef.current !== null && map === null && offer !== undefined) {
+    if (mapRef.current !== null && map === null && offer) {
       const instance = new Map(mapRef.current, {
         center: {
           lat: offer.cityLatitude,
           lng: offer.cityLongitude,
         },
-        zoom: 10,
+        zoom: offer.cityZoom,
       });
 
       const layer = new TileLayer(
@@ -31,6 +31,15 @@ function useMap(
       setMap(instance);
     }
   }, [mapRef, map, offer]);
+
+  useEffect(() => {
+    if (offer) {
+      map?.setView({
+        lat: offer.cityLatitude,
+        lng: offer.cityLongitude,
+      });
+    }
+  }, [map, offer]);
 
   return map;
 }
