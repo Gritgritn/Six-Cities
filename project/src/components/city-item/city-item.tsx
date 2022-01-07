@@ -31,3 +31,5 @@ function CityItem({ city }: CityItemProps): JSX.Element {
 }
 
 export default CityItem;
+
+

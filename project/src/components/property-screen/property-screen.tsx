@@ -34,3 +34,4 @@ function PropertyScreen(): JSX.Element {
 }
 
 export default PropertyScreen;
+

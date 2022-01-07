@@ -27,3 +27,4 @@ function PropertyReviews({ id }: PropertyReviewsProps): JSX.Element {
 }
 
 export default PropertyReviews;
+

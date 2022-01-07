@@ -16,3 +16,4 @@ function PropertyNearPlaces(): JSX.Element {
 }
 
 export default PropertyNearPlaces;
+

@@ -4,7 +4,7 @@ import PrivateRoute from '../private-route/private-route';
 import MainPage from '../main-page/main-page';
 import LoginScreen from '../login-screen/login-screen';
 import FavoritesScreen from '../favorites-screen/favorites-screen';
-import MainPage404 from '../NotFound404/NotFound404';
+import MainPage404 from '../main-page-404/main-page-404';
 import { useSelector } from 'react-redux';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { isCheckedAuth } from '../../utils/uttils';

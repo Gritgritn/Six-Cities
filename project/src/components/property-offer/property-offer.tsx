@@ -5,7 +5,7 @@ import { changeFavoriteStatus } from '../../store/api-actions';
 import { getOffer } from '../../store/offer-data/selectors';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { getRatingStarsWidth } from '../../utils/uttils';
-import MainPage404 from '../NotFound404/NotFound404';
+import MainPage404 from '../main-page-404/main-page-404';
 import PropertyMap from '../property-map/property-map';
 import PropertyReviews from '../property-reviews/property-reviews';
 
@@ -142,3 +142,4 @@ function PropertyOffer(): JSX.Element {
 }
 
 export default PropertyOffer;
+
